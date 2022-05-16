@@ -20,12 +20,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class LivrosEmJDBC implements Livros {
-
-
-    @Resource(lookup = "java:app/jdbc/pgadmin")
-    private DataSource dataSource;
+//    @Resource(lookup = "java:app/jdbc/pgadmin")
+//    private DataSource dataSource;
     private Connection connection;
-
     public LivrosEmJDBC() {
         try {
             Class.forName("org.postgresql.Driver");

@@ -3,8 +3,10 @@ package br.edu.ifpb.web.jsp;
 import br.edu.ifpb.domain.Editora;
 import br.edu.ifpb.domain.Editoras;
 import br.edu.ifpb.infra.EditorasEmJDBC;
+import br.edu.ifpb.usecases.CriarEditora;
 
 import java.io.IOException;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "EditoraController", urlPatterns = "/editoras.do")
 public class EditoraController extends HttpServlet {
     private Editoras editoras = new EditorasEmJDBC();
+    @Inject
+    private CriarEditora criarEditora;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,7 +43,11 @@ public class EditoraController extends HttpServlet {
         //atendendo ao processamento
         String localDeOrigem = req.getParameter("localDeOrigem");
         String nomeFantasia = req.getParameter("nomeFantasia");
-        editoras.nova(new Editora(localDeOrigem, nomeFantasia));
+//        editoras.nova(new Editora(localDeOrigem, nomeFantasia));
+        criarEditora.criarEditora(
+                new Editora(localDeOrigem, nomeFantasia)
+        );
+        System.out.println("passei por aqui...");
         //redicionar à página
         resp.sendRedirect("/core/editoras.do"); //gerando uma nova requisição
     }

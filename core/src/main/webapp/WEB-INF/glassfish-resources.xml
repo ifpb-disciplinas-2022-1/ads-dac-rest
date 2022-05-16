@@ -15,7 +15,7 @@
                           max-connection-usage-count="0"
                           max-pool-size="32" max-wait-time-in-millis="60000"
                           name="post-gre-sql_jpa_postgresPool" non-transactional-connections="false"
-                          pool-resize-quantity="2" res-type="javax.sql.DataSource"
+                          pool-resize-quantity="4" res-type="javax.sql.DataSource"
                           statement-timeout-in-seconds="-1" steady-pool-size="8"
                           validate-atmost-once-period-in-seconds="0"
                           wrap-jdbc-objects="false">

@@ -3,9 +3,11 @@ package br.edu.ifpb.web.jsf;
 import br.edu.ifpb.domain.Editora;
 import br.edu.ifpb.domain.Editoras;
 import br.edu.ifpb.infra.EditorasEmJDBC;
+import br.edu.ifpb.usecases.CriarEditora;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 
@@ -17,9 +19,14 @@ public class ControladorDeEditoras {
     private String busca ="";
     private List<Editora> editorasFiltradas;//  = editoras.todas();
 
-    private Editoras editoras = new EditorasEmJDBC();
+    @Inject
+    private Editoras editoras;// = new EditorasEmJDBC();
+
+    @Inject
+    private CriarEditora criarEditora;// = new CriarEditora(editoras);
     public String salvar(){
-        editoras.nova(editora);
+//        editoras.nova(editora);
+        criarEditora.criarEditora(editora);
         return "listar";
     }
 

@@ -15,4 +15,5 @@ public interface Editoras {
 
     public void nova(Editora editora);
 
+    boolean nomeDuplicado(String nomeFantasia);
 }

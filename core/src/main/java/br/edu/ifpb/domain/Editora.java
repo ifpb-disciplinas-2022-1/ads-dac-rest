@@ -1,5 +1,7 @@
 package br.edu.ifpb.domain;
 
+import java.time.LocalDate;
+
 /**
  * @author Ricardo Job
  * @mail ricardo.job@ifpb.edu.br
@@ -10,6 +12,7 @@ public class Editora {
     private int codigo;
     private String localDeOrigem;
     private String nomeFantasia;
+    private LocalDate criadaEm;
 
     public Editora(){}
     public Editora(String localDeOrigem,String nomeFantasia) {
@@ -45,6 +48,12 @@ public class Editora {
     public void setNomeFantasia(String nomeFantasia) {
         this.nomeFantasia = nomeFantasia;
     }
-    
-    
+
+    public LocalDate getCriadaEm() {
+        return criadaEm;
+    }
+
+    public void setCriadaEm(LocalDate criadaEm) {
+        this.criadaEm = criadaEm;
+    }
 }
