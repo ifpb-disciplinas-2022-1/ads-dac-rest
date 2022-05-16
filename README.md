@@ -1,10 +1,10 @@
 # SessionBeans
 
-Este projeto está estruturado com os assuntos relacionados a arquitetura EJB e o uso do SessionBeans.
+Este projeto está estruturado com os assuntos relacionados a arquitetura EJB e o uso do SessionBeans. Os UseCases estão descritos no seguinte [arquivo](USECASES.md).
 
 ## Aulas
 
-* [Aula 1: SessionBeans - Stateless](https://github.com/ifpb-disciplinas-2022-1/ads-dac-sessionbean/commit/) 
+* [Aula 1: SessionBeans - Stateless](https://github.com/ifpb-disciplinas-2022-1/ads-dac-sessionbean/commit/ca4559aae90f0ea23fa6647f1724a79b8f79a79a) 
 
 ## Executando o projeto
 

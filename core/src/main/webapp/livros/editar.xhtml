@@ -14,8 +14,6 @@
     <title>Starter Template - Materialize</title>
     <!-- CSS  -->
     <h:outputStylesheet library="css" name="main.css"/>
-    <!--    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
-    <!--    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
 </h:head>
 
 <body>
@@ -35,25 +33,9 @@
                 </h:inputText><h:message for="titulo"/>
             </div>
 
-            <!--            <div class="input-area">-->
-            <!--                <h:outputLabel value="Editora: " for="editora"/>-->
-            <!--                <h:selectOneMenu id="editora" validator="validator.editora"-->
-            <!--                                 converter="converter.editora"-->
-            <!--                                 value="#{controladorDeLivros.livro.editora}">-->
-            <!--                    <f:selectItems value="{controladorDeLivros.editoras()}"-->
-            <!--                                   var="isbn"-->
-            <!--                                   itemLabel="#{editora.nomeFantasia}"/>-->
-            <!--                </h:selectOneMenu>-->
-            <!--            </div>-->
-
-
             <div class="line">
                 <div class="input-area">
                     <h:outputLabel value="Lancamento: " for="dataLancamento"/>
-                    <!--                    <h:inputText id="dataLancamento" value="#{controladorDeLivros.livro.dataDeLancamento}">-->
-                    <!--                        <f:convertDateTime pattern="dd/MM/yyyy" type="localDate"/>-->
-                    <!--                    </h:inputText>-->
-
                     <p:datePicker id="dataLancamento" value="#{controladorDeLivros.livro.dataDeLancamento}"
                                   pattern="dd/MM/yyyy">
                         <f:convertDateTime pattern="dd/MM/yyyy" type="localDate"/>
