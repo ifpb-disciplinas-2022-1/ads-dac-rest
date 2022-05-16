@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="../WEB-INF/base.xhtml">
+    <ui:define name="centro">
+        <h2>Listagem de Editoras</h2>
+        <h:dataTable value="#{controladorDeEditoras.todasAsEditoras()}" var="editora" >
+            <h:column>
+                <f:facet name="header">Local de Origem</f:facet>
+                 #{editora.localDeOrigem}
+             </h:column>
+            <h:column>   #{editora.nomeFantasia}  </h:column>
+        </h:dataTable>
+        <h:form>
+            <h:commandButton value="nova Editora" action="criar.xhtml?faces-redirect=true" />
+        </h:form>
+    </ui:define>
+</ui:composition>

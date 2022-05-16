@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.main {
+  width: 100%;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #F5F5F5;
+}
+
+.main h2 {
+  margin-bottom: 24px;
+}
+
+.main form {
+  padding: 24px;
+  min-width: 32vw;
+}
+
+.input-area {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 24px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.input-area label {
+  margin-bottom: 12px;
+  font-weight: 500;
+  color: #424242;
+}
+
+.input-area input {
+  padding: 12px;
+  border: solid 1px #E0E0E0;
+  border-radius: 4px;
+}
+
+.input-area input:focus {
+  border: solid 1px #42A5F5;
+  outline: none;
+  -webkit-box-shadow: 0px 0px 2px #42A5F5;
+          box-shadow: 0px 0px 2px #42A5F5;
+}
+
+.input-area select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #FFF;
+  border: solid 1px #E0E0E0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.input-area select:focus {
+  border: solid 1px #42A5F5;
+  outline: none;
+  -webkit-box-shadow: 0px 0px 2px #42A5F5;
+          box-shadow: 0px 0px 2px #42A5F5;
+}
+
+.input-area button {
+  padding: 12px;
+  border: solid 1px #1E88E5;
+  background-color: #42A5F5;
+  color: #F5F5F5;
+  font-weight: bold;
+  border-radius: 4px;
+  outline: none;
+  max-width: 200px;
+  cursor: pointer;
+}
+
+.line {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.line .input-area:nth-child(1) {
+  margin-right: 12px;
+}
+/*# sourceMappingURL=main.css.map */

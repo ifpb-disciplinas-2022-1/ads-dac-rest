@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+>
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <title>Starter Template - Materialize</title>
+    <!-- CSS  -->
+    <h:outputStylesheet library="css" name="main.css"/>
+    <!--    <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
+    <!--    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
+</h:head>
+
+<body>
+    <div align="center" class="main">
+        <h:form>
+            <div class="input-area">
+                <h:outputLabel value="ISBN: " for="isbn"/>
+                <h:inputText id="isbn" value="#{controladorDeLivros.livro.isbn}"
+                             converter="converter.isbn"
+                             validator="validator.isbn" />
+                <h:message for="isbn"/>
+            </div>
+            <div class="input-area">
+                <h:outputLabel value="Título: " for="titulo"/>
+                <h:inputText id="titulo" value="#{controladorDeLivros.livro.titulo}" required="true">
+                    <f:validateLength minimum="5"/>
+                </h:inputText><h:message for="titulo"/>
+            </div>
+
+            <!--            <div class="input-area">-->
+            <!--                <h:outputLabel value="Editora: " for="editora"/>-->
+            <!--                <h:selectOneMenu id="editora" validator="validator.editora"-->
+            <!--                                 converter="converter.editora"-->
+            <!--                                 value="#{controladorDeLivros.livro.editora}">-->
+            <!--                    <f:selectItems value="{controladorDeLivros.editoras()}"-->
+            <!--                                   var="isbn"-->
+            <!--                                   itemLabel="#{editora.nomeFantasia}"/>-->
+            <!--                </h:selectOneMenu>-->
+            <!--            </div>-->
+
+
+            <div class="line">
+                <div class="input-area">
+                    <h:outputLabel value="Lancamento: " for="dataLancamento"/>
+                    <!--                    <h:inputText id="dataLancamento" value="#{controladorDeLivros.livro.dataDeLancamento}">-->
+                    <!--                        <f:convertDateTime pattern="dd/MM/yyyy" type="localDate"/>-->
+                    <!--                    </h:inputText>-->
+
+                    <p:datePicker id="dataLancamento" value="#{controladorDeLivros.livro.dataDeLancamento}"
+                                  pattern="dd/MM/yyyy">
+                        <f:convertDateTime pattern="dd/MM/yyyy" type="localDate"/>
+                    </p:datePicker>
+                </div>
+                <div class="input-area">
+                    <h:outputLabel value="Preço:" for="preco"/>
+                    <h:inputText id="preco" value="#{controladorDeLivros.livro.preco}" >
+                        <f:convertNumber minFractionDigits="2" />
+                    </h:inputText>
+                </div>
+            </div>
+            <div class="input-area">
+                <h:commandButton value="+" action="#{controladorDeLivros.salvar()}"/><br/>
+            </div>
+            <h:outputText value="#{controladorDeLivros.livro.isbn}" converter="converter.isbn" />
+            <h:outputText value="#{controladorDeLivros.livro.isbn.toFormatted()}"/>
+        </h:form>
+    </div>
+</body>
+</html>

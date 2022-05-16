@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../WEB-INF/base.xhtml">
+<ui:define name="centro">
+    <div align="center">
+        <h:form>
+            <h:outputLabel value="Local de origem: " for="localDeOrigem" />
+            <h:inputText value="#{controladorDeEditoras.busca}" id="localDeOrigem" />
+            <h:commandButton value="filtrar" action="#{controladorDeEditoras.filtrar()}"/>
+        </h:form>
+        <h:dataTable var="editora" value="#{controladorDeEditoras.editorasFiltradas}">
+            <h:column>#{editora.codigo}</h:column>
+            <h:column>#{editora.localDeOrigem}</h:column>
+            <h:column>#{editora.nomeFantasia}</h:column>
+        </h:dataTable>
+        <h:form>
+            <h:commandButton value="Nova Editora" action="criar.xhtml?faces-redirect=true" />
+        </h:form>
+    </div>
+</ui:define>
+</ui:composition>

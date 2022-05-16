@@ -1,0 +1,26 @@
+DS_Store
+
+/jse
+# Maven
+/target/
+
+# Netbeans
+/nbproject
+nb-configuration.xml
+**/nb-configuration.xml
+
+# Eclipse
+**/.settings
+**/.project
+**/.classpath
+
+# IDEA
+**/target
+.idea/**
+**/*.iml 
+
+# recursive
+**/.DS_Store
+**/target/
+**/.idea/**
+**/nbproject

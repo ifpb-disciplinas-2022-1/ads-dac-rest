@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../WEB-INF/base.xhtml">
+    <ui:define name="centro">
+        <div align="center">
+<!--            <h:form id="formulario">-->
+<!--                <h:outputLabel value="Local de Origem:" for="localDeOrigem"/>-->
+<!--                <h:inputText id="localDeOrigem" value="#{controladorDeEditoras.editora.localDeOrigem}" required="true"/><br/>-->
+<!--                <h:outputLabel value="Nome Fantasia:" for="nomeFantasia"/>-->
+<!--                <h:inputText id="nomeFantasia" value="#{controladorDeEditoras.editora.nomeFantasia}" /><br/>-->
+<!--                <h:commandButton styleClass="btn" value="+" action="#{controladorDeEditoras.salvar()}" /><br/>-->
+<!--            </h:form>-->
+            <h:form id="formulario">
+                <label for="localDeOrigem">Local de Origem: </label>
+                <input type="text" id="localDeOrigem"
+                       jsf:value="#{controladorDeEditoras.editora.localDeOrigem}"
+                       jsf:required="true"
+                       placeholder="Local de Origem" />
+                <label for="nomeFantasia">Nome Fantasia: </label>
+                <input type="text" id="nomeFantasia"
+                       jsf:value="#{controladorDeEditoras.editora.nomeFantasia}"
+                       placeholder="Nome fantasia" />
+                <input id="botao" class="btn" type="submit"
+                       jsf:action="#{controladorDeEditoras.salvar()}" jsf:value="++"/>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
