@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="../WEB-INF/base.xhtml">
 <ui:define name="centro">
     <div align="center">
         <h2>Cesta de Livros</h2>
         <h:form>
-            <h:inputText value="#{controladorDeReservas.livro}"/>
+<!--            <h:inputText value="#{controladorDeReservas.livro}"/>-->
+            <h:selectOneMenu value="#{controladorDeReservas.livro}">
+                <f:selectItems var="l"
+                               value="#{controladorDeReservas.livrosDisponiveis()}"
+                               itemLabel="#{l}"/>
+            </h:selectOneMenu>
             <h:commandButton value="+" action="#{controladorDeReservas.adicionar()}" styleClass="btn"/>
             <h:dataTable var="livro" value="#{controladorDeReservas.livrosNaCesta()}">
                 <h:column>
