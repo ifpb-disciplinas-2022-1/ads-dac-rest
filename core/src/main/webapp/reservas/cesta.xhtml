@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../WEB-INF/base.xhtml">
+<ui:define name="centro">
+    <div align="center">
+        <h2>Cesta de Livros</h2>
+        <h:form>
+            <h:inputText value="#{controladorDeReservas.livro}"/>
+            <h:commandButton value="+" action="#{controladorDeReservas.adicionar()}" styleClass="btn"/>
+            <h:dataTable var="livro" value="#{controladorDeReservas.livrosNaCesta()}">
+                <h:column>
+                    <h:outputText value="#{livro}" />
+                </h:column>
+                <h:column>
+                    <h:commandButton value="x" action="#{controladorDeReservas.remover(livro)}" styleClass="btn-small"/>
+                </h:column>
+            </h:dataTable>
+            <h:commandButton value="finalizar" action="#{controladorDeReservas.finalizar()}" styleClass="btn"/>
+        </h:form>
+    </div>
+</ui:define>
+</ui:composition>
