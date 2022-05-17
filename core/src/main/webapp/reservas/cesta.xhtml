@@ -8,16 +8,15 @@
     <div align="center">
         <h2>Cesta de Livros</h2>
         <h:form>
-<!--            <h:inputText value="#{controladorDeReservas.livro}"/>-->
-            <h:selectOneMenu value="#{controladorDeReservas.livro}">
+            <h:selectOneMenu value="#{controladorDeReservas.livro}" converter="converter.livro">
                 <f:selectItems var="l"
                                value="#{controladorDeReservas.livrosDisponiveis()}"
-                               itemLabel="#{l}"/>
+                               itemLabel="#{l.titulo}"/>
             </h:selectOneMenu>
             <h:commandButton value="+" action="#{controladorDeReservas.adicionar()}" styleClass="btn"/>
             <h:dataTable var="livro" value="#{controladorDeReservas.livrosNaCesta()}">
                 <h:column>
-                    <h:outputText value="#{livro}" />
+                    <h:outputText value="#{livro.titulo}" />
                 </h:column>
                 <h:column>
                     <h:commandButton value="x" action="#{controladorDeReservas.remover(livro)}" styleClass="btn-small"/>

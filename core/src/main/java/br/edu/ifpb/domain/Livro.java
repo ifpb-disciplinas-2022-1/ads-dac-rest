@@ -1,6 +1,7 @@
 package br.edu.ifpb.domain;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * @author Ricardo Job
@@ -68,6 +69,19 @@ public class Livro {
     }
     public void setEditora(Editora editora) {
         this.editora = editora;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Livro livro = (Livro) o;
+        return id == livro.id && Float.compare(livro.preco, preco) == 0 && Objects.equals(titulo, livro.titulo) && Objects.equals(dataDeLancamento, livro.dataDeLancamento) && Objects.equals(isbn, livro.isbn) && Objects.equals(editora, livro.editora);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, titulo, dataDeLancamento, preco, isbn, editora);
     }
 
     @Override

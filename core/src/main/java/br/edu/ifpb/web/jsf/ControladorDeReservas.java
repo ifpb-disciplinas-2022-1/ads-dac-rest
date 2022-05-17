@@ -1,6 +1,8 @@
 package br.edu.ifpb.web.jsf;
 
 import br.edu.ifpb.domain.Livro;
+import br.edu.ifpb.domain.Livros;
+import br.edu.ifpb.infra.LivrosEmJDBC;
 import br.edu.ifpb.usecases.CestaDeLivros;
 
 import javax.enterprise.context.RequestScoped;
@@ -16,24 +18,19 @@ import java.util.List;
 @Named
 @SessionScoped
 public class ControladorDeReservas implements Serializable {
-    private String livro;
+    private Livro livro;
     @Inject //no intancição do objeto (ControladorDeReservas)
-    private CestaDeLivros cesta;// = new CestaDeLivros(); //session-key: 90ac0300181f-ffffffffd231423f-0
+    private CestaDeLivros cesta;
+    @Inject
+    private Livros livros;// = new LivrosEmJDBC();
     public String adicionar(){
         cesta.adicionar(livro); //session-key: 90ac0300181f-ffffffffd231423f-0
-        livro = "";
         return null;
     }
-    public List<String> livrosDisponiveis(){
-        return Arrays.asList(
-            "livro 1",
-            "livro 2",
-            "livro 3",
-            "livro 4",
-            "livro 5"
-        );
+    public List<Livro> livrosDisponiveis(){
+        return this.livros.todos();
     }
-    public List<String> livrosNaCesta(){
+    public List<Livro> livrosNaCesta(){
         return this.cesta.livrosNaCesta();
     }
     public String finalizar(){
@@ -45,14 +42,14 @@ public class ControladorDeReservas implements Serializable {
                 .get();
         return null;
     }
-    public String remover(String livro){
+    public String remover(Livro livro){
         this.cesta.remover(livro);
         return null;
     }
-    public String getLivro() {
+    public Livro getLivro() {
         return livro;
     }
-    public void setLivro(String livro) {
+    public void setLivro(Livro livro) {
         this.livro = livro;
     }
 }

@@ -12,4 +12,6 @@ public interface Livros {
     public List<Livro> todos();
     
     public void criar(Livro livro);
+
+    Livro buscarPorId(long id);
 }

@@ -10,6 +10,7 @@ import br.edu.ifpb.domain.Livro;
 import br.edu.ifpb.domain.Livros;
 
 import javax.annotation.Resource;
+import javax.ejb.Stateless;
 import javax.sql.DataSource;
 import java.sql.*;
 import java.time.LocalDate;
@@ -19,27 +20,15 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+@Stateless
 public class LivrosEmJDBC implements Livros {
-//    @Resource(lookup = "java:app/jdbc/pgadmin")
-//    private DataSource dataSource;
-    private Connection connection;
-    public LivrosEmJDBC() {
-        try {
-            Class.forName("org.postgresql.Driver");
-            this.connection = DriverManager.getConnection(
-                "jdbc:postgresql://host-banco:5432/livros",
-                "job","123"
-            );
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(LivrosEmJDBC.class.getName()).log(Level.SEVERE,null,ex);
-        }
-
-    }
+    @Resource(lookup = "java:app/jdbc/pgadmin")
+    private DataSource dataSource;
 
     @Override
     public void criar(Livro livro) {
         try {
-            PreparedStatement statement = connection.prepareStatement(
+            PreparedStatement statement = dataSource.getConnection().prepareStatement(
                 "INSERT INTO livros(titulo, dataDeLancamento) VALUES ( ?, ? );"
             );
             statement.setString(1,livro.titulo());
@@ -54,10 +43,26 @@ public class LivrosEmJDBC implements Livros {
     }
 
     @Override
+    public Livro buscarPorId(long id) {
+        try {
+            PreparedStatement prepareStatement = dataSource.getConnection().prepareStatement(
+                    "SELECT * FROM livros where id = ?"
+            );
+            prepareStatement.setLong(1, id);
+            ResultSet result = prepareStatement.executeQuery();
+            if(result.next())
+                return criarLivros(result);
+            return null;
+        } catch (SQLException ex) {
+            return null;
+        }
+    }
+
+    @Override
     public List<Livro> todos() {
         try {
             List<Livro> lista = new ArrayList<>();
-            ResultSet result = connection.prepareStatement(
+            ResultSet result = dataSource.getConnection().prepareStatement(
                 "SELECT * FROM livros"
             ).executeQuery();
             while (result.next()) {

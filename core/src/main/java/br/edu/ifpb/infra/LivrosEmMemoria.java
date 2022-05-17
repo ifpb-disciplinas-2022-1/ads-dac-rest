@@ -29,4 +29,9 @@ public class LivrosEmMemoria implements Livros{
         
     }
 
+    @Override
+    public Livro buscarPorId(long id) {
+        return null;
+    }
+
 }
