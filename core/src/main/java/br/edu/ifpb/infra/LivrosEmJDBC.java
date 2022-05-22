@@ -79,8 +79,9 @@ public class LivrosEmJDBC implements Livros {
     private Livro criarLivros(ResultSet result) throws SQLException {
         LocalDate dataDeLancamento = result.getDate("dataDeLancamento").toLocalDate();
         String titulo = result.getString("titulo");
+        String capa = result.getString("url_capa");
         int id = result.getInt("id");
-        return new Livro(id,titulo,dataDeLancamento);
+        return new Livro(id,titulo,dataDeLancamento, capa);
     }
 
 }

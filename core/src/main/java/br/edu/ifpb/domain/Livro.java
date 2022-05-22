@@ -18,15 +18,20 @@ public class Livro {
     private ISBN isbn;// "85-359-0277-5"; //13 caracteres
 
     private Editora editora;
+    private String capa;
 
     public Livro(){}
     public Livro(String titulo, LocalDate dataDeLancamento) {
         this(0,titulo,dataDeLancamento);
     }
     public Livro(long id,String titulo,LocalDate dataDeLancamento) {
+        this(id, titulo, dataDeLancamento, "");
+    }
+    public Livro(long id,String titulo,LocalDate dataDeLancamento, String capa) {
         this.id = id;
         this.titulo = titulo;
         this.dataDeLancamento = dataDeLancamento;
+        this.capa = capa;
     }
     public String titulo(){
         return this.titulo;
@@ -70,21 +75,21 @@ public class Livro {
     public void setEditora(Editora editora) {
         this.editora = editora;
     }
-
-    @Override
+    public String getCapa() {
+        return capa;
+    }
+    public void setCapa(String capa) {
+        this.capa = capa;
+    }
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Livro livro = (Livro) o;
         return id == livro.id && Float.compare(livro.preco, preco) == 0 && Objects.equals(titulo, livro.titulo) && Objects.equals(dataDeLancamento, livro.dataDeLancamento) && Objects.equals(isbn, livro.isbn) && Objects.equals(editora, livro.editora);
     }
-
-    @Override
     public int hashCode() {
         return Objects.hash(id, titulo, dataDeLancamento, preco, isbn, editora);
     }
-
-    @Override
     public String toString() {
         return "Livro{" + "id=" + id + ", titulo=" + titulo + ", dataDeLancamento=" + dataDeLancamento + '}';
     }
