@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="WEB-INF/base.xhtml">
+    <ui:define name="centro">
+        <h:form id="form">
+            <h:inputText value="#{controladorDeChat.mensagem}"/>
+            <h:commandButton value="+"
+                             action="#{controladorDeChat.adicionar()}"
+                             styleClass="btn-small" />
+            <div class="card">
+                <h:dataTable var="msg" value="#{controladorDeChat.todasAsMensagens()}" >
+                    <h:column>
+                        <h:outputText value="#{msg}" />
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

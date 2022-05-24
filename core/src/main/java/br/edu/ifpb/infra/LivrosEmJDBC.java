@@ -27,25 +27,24 @@ public class LivrosEmJDBC implements Livros {
 
     @Override
     public void criar(Livro livro) {
-        try {
-            PreparedStatement statement = dataSource.getConnection().prepareStatement(
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement prepareStatement = connection.prepareStatement(
                 "INSERT INTO livros(titulo, dataDeLancamento) VALUES ( ?, ? );"
             );
-            statement.setString(1,livro.titulo());
-            statement.setDate(
+            prepareStatement.setString(1,livro.titulo());
+            prepareStatement.setDate(
                 2,Date.valueOf(livro.dataLancamento())
             );
-            statement.executeUpdate();
+            prepareStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(LivrosEmJDBC.class.getName()).log(Level.SEVERE,null,ex);
         }
-
     }
 
     @Override
     public Livro buscarPorId(long id) {
-        try {
-            PreparedStatement prepareStatement = dataSource.getConnection().prepareStatement(
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement prepareStatement = connection.prepareStatement(
                     "SELECT * FROM livros where id = ?"
             );
             prepareStatement.setLong(1, id);
@@ -60,9 +59,9 @@ public class LivrosEmJDBC implements Livros {
 
     @Override
     public List<Livro> todos() {
-        try {
+        try (Connection connection = dataSource.getConnection()) {
             List<Livro> lista = new ArrayList<>();
-            ResultSet result = dataSource.getConnection().prepareStatement(
+            ResultSet result = connection.prepareStatement(
                 "SELECT * FROM livros"
             ).executeQuery();
             while (result.next()) {

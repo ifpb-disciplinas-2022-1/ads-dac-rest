@@ -12,9 +12,8 @@ import java.util.List;
  * @mail ricardo.job@ifpb.edu.br
  * @since 19/04/2022, 10:51:42
  */
-public class LivrosEmMemoria implements Livros{
+public class LivrosEmMemoria {//implements Livros{
 
-    @Override
     public List<Livro> todos() {
         return Arrays.asList(
             new Livro(1,"Java",LocalDate.now()),
@@ -24,12 +23,10 @@ public class LivrosEmMemoria implements Livros{
             
     }
 
-    @Override
     public void criar(Livro livro) {
         
     }
 
-    @Override
     public Livro buscarPorId(long id) {
         return null;
     }

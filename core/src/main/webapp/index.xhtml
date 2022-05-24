@@ -2,18 +2,39 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 template="WEB-INF/base.xhtml">
     <ui:define name="centro">
         <h2>Livraria's Job</h2>
 
-        <a href="faces/editoras/listar.xhtml">listagem de editoras</a> <br />
-        <a href="faces/editoras/criar.xhtml">nova editora</a> <br />
-        <a href="faces/editoras/buscar.xhtml">buscar por local</a> <br />
-        <a href="faces/livros/editar.xhtml">novo livro</a> <br />
-        <a href="faces/reservas/cesta.xhtml">cesta</a> <br />
-        <a href="">listagem de livros</a> <br />
-<!--        https://materializecss.com/templates/starter-template/preview.html-->
+        <h:form id="form">
+            <div class="card">
+                <p:carousel value="#{controladorDestaque.livrosEmDestaque()}" var="livro" numVisible="3" numScroll="3">
+                    <div class="product-item">
+                        <div class="product-item-content">
+                            <div class="p-mb-3">
+                                <p:graphicImage url="#{livro.capa}" styleClass="product-image"/>
+                            </div>
+                            <div>
+                                <h4 class="p-mb-1">#{livro.titulo}</h4>
+                                <h6 class="p-mt-0 p-mb-3">
+                                    <h:outputText value="#{livro.preco}">
+                                        <f:convertNumber type="currency" pattern="¤#0" currencySymbol="R$" />
+                                    </h:outputText>
+                                </h6>
+                                <div class="p-mt-5">
+                                    <p:commandButton type="button" icon="pi pi-search" styleClass="rounded-button p-mr-2" />
+                                    <p:commandButton type="button" icon="pi pi-star" styleClass="ui-button-success rounded-button p-mr-2" />
+                                    <p:commandButton type="button" icon="pi pi-cog" styleClass="ui-button-help rounded-button" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p:carousel>
+            </div>
+        </h:form>
+        <!--        https://materializecss.com/templates/starter-template/preview.html-->
 <!--        https://www.primefaces.org/showcase/ui/data/carousel.xhtml?jfwid=aea08-->
     </ui:define>
 </ui:composition>

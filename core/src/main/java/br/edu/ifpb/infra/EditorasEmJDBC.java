@@ -20,38 +20,18 @@ import java.util.logging.Logger;
  */
 @Stateless
 public class EditorasEmJDBC implements Editoras {
-//    @Resource(lookup = "java:app/jdbc/pgadmin")
-//
-//    private Connection connection;
-
     @Resource(lookup = "java:app/jdbc/pgadmin")
     private DataSource dataSource;
-    public EditorasEmJDBC() {
 
-
-
-//        try {
-//            Class.forName("org.postgresql.Driver");
-//            this.connection = DriverManager.getConnection(
-//                "jdbc:postgresql://host-banco:5432/livros",
-//                "job","123"
-//            );
-//        } catch (ClassNotFoundException | SQLException ex) {
-//            Logger.getLogger(EditorasEmJDBC.class.getName()).log(Level.SEVERE,null,ex);
-//        }
-
-    }
-    
     @Override
     public void nova(Editora editora) {
-        try {
-            PreparedStatement statement = this.dataSource.getConnection().prepareStatement(
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement prepareStatement = connection.prepareStatement(
                 "INSERT INTO editoras(localDeOrigem, nomeFantasia) VALUES ( ?, ? );"
             );
-            statement.setString(1, editora.getLocalDeOrigem());
-            statement.setString(2, editora.getNomeFantasia());
-            
-            statement.executeUpdate();
+            prepareStatement.setString(1, editora.getLocalDeOrigem());
+            prepareStatement.setString(2, editora.getNomeFantasia());
+            prepareStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(LivrosEmJDBC.class.getName()).log(Level.SEVERE,null,ex);
         }
@@ -59,9 +39,8 @@ public class EditorasEmJDBC implements Editoras {
 
     @Override
     public boolean nomeDuplicado(String nomeFantasia) {
-        try {
-
-            PreparedStatement prepareStatement = this.dataSource.getConnection().prepareStatement(
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement prepareStatement = connection.prepareStatement(
                     "SELECT COUNT(nomeFantasia) AS contador FROM editoras WHERE nomeFantasia like ?"
             );
             prepareStatement.setString(1, nomeFantasia);
@@ -78,9 +57,9 @@ public class EditorasEmJDBC implements Editoras {
 
     @Override
     public List<Editora> todas() {
-        try {
+        try (Connection connection = dataSource.getConnection()) {
             List<Editora> lista = new ArrayList<>();
-            ResultSet result = this.dataSource.getConnection().prepareStatement(
+            ResultSet result = connection.prepareStatement(
                 "SELECT * FROM editoras"
             ).executeQuery();
             while (result.next()) {
@@ -96,9 +75,9 @@ public class EditorasEmJDBC implements Editoras {
 
     @Override
     public List<Editora> porLocalDeOrigem(String localDeOrigem) {
-        try {
+        try (Connection connection = dataSource.getConnection()) {
             List<Editora> lista = new ArrayList<>();
-            PreparedStatement prepareStatement = this.dataSource.getConnection().prepareStatement(
+            PreparedStatement prepareStatement = connection.prepareStatement(
                     "SELECT * FROM editoras WHERE localDeOrigem like ?"
             );
             prepareStatement.setString(1, localDeOrigem);
@@ -118,7 +97,6 @@ public class EditorasEmJDBC implements Editoras {
         String localDeOrigem = result.getString("localDeOrigem");
         String nomeFantasia = result.getString("nomeFantasia");
         int codigo = result.getInt("codigo");
-        
         return new Editora(codigo,localDeOrigem,nomeFantasia);
     }
 
