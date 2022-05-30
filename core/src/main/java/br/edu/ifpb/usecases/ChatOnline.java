@@ -16,8 +16,6 @@ public class ChatOnline implements Serializable {
     private List<String> mensagens = new CopyOnWriteArrayList<>(); //Thread Safe
     private Object lock = new Object();
 
-//    @Inject
-//    private BeanManager beanManager;
 //    public synchronized void adicionarMensagem(String mensagem) {
 //        System.out.println("LOG: " + mensagem);
 //        this.mensagens.add(mensagem);
@@ -39,7 +37,6 @@ public class ChatOnline implements Serializable {
         synchronized (lock){
             this.mensagens.add(mensagem);
         }
-//        beanManager.fireEvent(new Mensagem(mensagem));
     }
     public List<String> mensagens() {
         return Collections.unmodifiableList( //num bula

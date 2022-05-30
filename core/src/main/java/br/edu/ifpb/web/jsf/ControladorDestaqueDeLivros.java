@@ -13,7 +13,6 @@ import java.util.List;
 public class ControladorDestaqueDeLivros {
     @Inject
     private DestacarLivros destacarLivros;
-
     public List<Livro> livrosEmDestaque() {
         return destacarLivros.todosOsLivrosEmDestaque();
     }
