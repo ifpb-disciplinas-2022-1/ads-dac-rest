@@ -4,9 +4,9 @@ Este projeto está estruturado com os assuntos relacionados a arquitetura REST. 
 
 ## Aulas
 
-* [Aula 1: REST - Fundamentos](https://github.com/ifpb-disciplinas-2022-1/ads-dac-rest/commit/ca4559aae90f0ea23fa6647f1724a79b8f79a79a) 
+* [Aula 1: REST - Fundamentos](https://github.com/ifpb-disciplinas-2022-1/ads-dac-rest/commit/c8404cfa4ee44aaa2f77fc0efdf3a72a0ac4183e) 
 
-* [Aula 2: REST - Métodos e Verbos](https://github.com/ifpb-disciplinas-2022-1/ads-dac-rest/commit/ca4559aae90f0ea23fa6647f1724a79b8f79a79a) 
+* [Aula 2: REST - Métodos e Verbos](https://github.com/ifpb-disciplinas-2022-1/ads-dac-rest/commit/622e397c0045a7ef040be9b4f6c40f33749707d5) 
 
 ## Executando o projeto
 
