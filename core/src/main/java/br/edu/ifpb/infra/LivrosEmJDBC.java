@@ -26,19 +26,45 @@ public class LivrosEmJDBC implements Livros {
     private DataSource dataSource;
 
     @Override
-    public void criar(Livro livro) {
+    public Livro criar(Livro livro) {
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement prepareStatement = connection.prepareStatement(
-                "INSERT INTO livros(titulo, dataDeLancamento) VALUES ( ?, ? );"
+                "INSERT INTO livros(titulo, dataDeLancamento, url_capa) VALUES ( ?, ? , ?)",
+                    Statement.RETURN_GENERATED_KEYS
             );
             prepareStatement.setString(1,livro.titulo());
             prepareStatement.setDate(
                 2,Date.valueOf(livro.dataLancamento())
             );
+            prepareStatement.setString(3,livro.getCapa());
+            prepareStatement.executeUpdate();
+            ResultSet resultSet = prepareStatement.getGeneratedKeys();
+            if(resultSet.next())
+                livro.setId(resultSet.getInt("id"));
+            return livro;
+        } catch (SQLException ex) {
+            Logger.getLogger(LivrosEmJDBC.class.getName()).log(Level.SEVERE,null,ex);
+            return null;
+        }
+    }
+
+    @Override
+    public Livro atualizar(long id, Livro livro) {
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement prepareStatement = connection.prepareStatement(
+                    "UPDATE livros SET titulo= ?, dataDeLancamento= ?, url_capa = ? WHERE id=?"
+            );
+            prepareStatement.setString(1,livro.titulo());
+            prepareStatement.setDate(
+                    2,Date.valueOf(livro.dataLancamento())
+            );
+            prepareStatement.setString(3,livro.getCapa());
+            prepareStatement.setLong(4, id);
             prepareStatement.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(LivrosEmJDBC.class.getName()).log(Level.SEVERE,null,ex);
         }
+        return livro;
     }
 
     @Override
@@ -54,6 +80,20 @@ public class LivrosEmJDBC implements Livros {
             return null;
         } catch (SQLException ex) {
             return null;
+        }
+    }
+
+    @Override
+    public boolean remover(long id) {
+        try (Connection connection = dataSource.getConnection()) {
+            PreparedStatement prepareStatement = connection.prepareStatement(
+                    "DELETE FROM livros WHERE id=?"
+            );
+            prepareStatement.setLong(1, id);
+            return prepareStatement.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(LivrosEmJDBC.class.getName()).log(Level.SEVERE,null,ex);
+            return false;
         }
     }
 

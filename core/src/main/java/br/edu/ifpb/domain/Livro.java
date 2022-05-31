@@ -1,16 +1,19 @@
 package br.edu.ifpb.domain;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Ricardo Job
  * @mail ricardo.job@ifpb.edu.br
  * @since 19/04/2022, 10:48:28
  */
-public class Livro {
+@XmlRootElement
+public class Livro implements Serializable {
 
-    private long id;
+    private long id; //uuid
     private String titulo;
     private LocalDate dataDeLancamento;
     //conversores e validadores

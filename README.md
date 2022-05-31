@@ -1,10 +1,12 @@
-# SessionBeans
+# REST
 
-Este projeto está estruturado com os assuntos relacionados a arquitetura EJB e o uso do SessionBeans. Os UseCases estão descritos no seguinte [arquivo](USECASES.md).
+Este projeto está estruturado com os assuntos relacionados a arquitetura REST. Os UseCases estão descritos no seguinte [arquivo](USECASES.md).
 
 ## Aulas
 
-* [Aula 1: SessionBeans - Stateless](https://github.com/ifpb-disciplinas-2022-1/ads-dac-sessionbean/commit/ca4559aae90f0ea23fa6647f1724a79b8f79a79a) 
+* [Aula 1: REST - Fundamentos](https://github.com/ifpb-disciplinas-2022-1/ads-dac-rest/commit/ca4559aae90f0ea23fa6647f1724a79b8f79a79a) 
+
+* [Aula 2: REST - Métodos e Verbos](https://github.com/ifpb-disciplinas-2022-1/ads-dac-rest/commit/ca4559aae90f0ea23fa6647f1724a79b8f79a79a) 
 
 ## Executando o projeto
 
@@ -12,6 +14,8 @@ Para executarmos o código precisamos realizar o clone do projeto. Posteriorment
 * `sh run.sh`
 
 A aplicação estará disponível em `http://localhost:8080/core/`.
+
+Criarmos um conjuntos de [requisições](req-insomnia.json) que podem ser importadas para ferramenta Insomnia para reproduzir as requisições vistas em aula.
 
 ## Issues
 
