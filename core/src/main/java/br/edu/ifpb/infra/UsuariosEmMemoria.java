@@ -54,6 +54,8 @@ public class UsuariosEmMemoria implements Usuarios {
     @Override
     public Usuario buscar(String cpf, String senha) {
         return this.buscar(String.valueOf(Objects.hash(cpf,senha)));
+
+        //email:senha
     }
 
 }

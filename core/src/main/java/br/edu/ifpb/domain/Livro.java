@@ -1,7 +1,6 @@
 package br.edu.ifpb.domain;
 
 //import jakarta.xml.bind.annotation.XmlRootElement;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -17,10 +16,8 @@ public class Livro implements Serializable {
     private long id; //uuid
     private String titulo;
     private LocalDate dataDeLancamento;
-    //conversores e validadores
     private float preco;
     private ISBN isbn;// "85-359-0277-5"; //13 caracteres
-
     private Editora editora;
     private String capa;
 
