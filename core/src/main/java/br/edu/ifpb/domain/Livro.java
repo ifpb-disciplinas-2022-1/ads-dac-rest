@@ -1,9 +1,10 @@
 package br.edu.ifpb.domain;
 
+import jakarta.xml.bind.annotation.XmlRootElement;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
-import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * @author Ricardo Job
