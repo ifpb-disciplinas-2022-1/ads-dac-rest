@@ -75,7 +75,7 @@ public class Emprestimo {
     public String getCpf() {
         return cpf;
     }
-    public void setCpf(String cpf) {
+    public void setKey(String cpf) {
         this.cpf = cpf;
     }
     @Override

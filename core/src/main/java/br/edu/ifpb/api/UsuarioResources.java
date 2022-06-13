@@ -1,15 +1,11 @@
 package br.edu.ifpb.api;
 
-import br.edu.ifpb.domain.Emprestimo;
-import br.edu.ifpb.domain.Emprestimos;
 import br.edu.ifpb.domain.Usuario;
 import br.edu.ifpb.domain.Usuarios;
 
 import javax.inject.Inject;
 import javax.json.JsonObject;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.container.ResourceContext;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -29,6 +25,17 @@ public class UsuarioResources {
     @Inject
     private Usuarios usuarios;
 
+    @GET
+    @Path("{key}")
+    public Response buscar(@PathParam("key") String key){
+        Usuario usuario = usuarios.buscar(key);
+        if(usuario == null){
+            return Response.noContent()
+                    .build();
+        }
+        return Response.ok(usuario).build();
+    }
+
     @POST
     public Response criar(JsonObject json, @Context UriInfo uriInfo){
         Usuario usuario = new Usuario(
@@ -44,6 +51,20 @@ public class UsuarioResources {
         return Response.created(location) //201
                 .entity(usuario) // emprestimo
                 .build();
+    }
+
+    @POST
+    @Path("login")
+    public Response logar(JsonObject json){
+        String key = usuarios.logar(
+                json.getString("cpf"),
+                json.getString("senha"));
+
+        if("".equals(key.trim())){
+            return Response.noContent()
+                    .build();
+        }
+        return Response.accepted(key).build();
     }
 
 }

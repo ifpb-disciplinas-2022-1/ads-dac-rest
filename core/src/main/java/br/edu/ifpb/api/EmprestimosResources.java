@@ -1,9 +1,7 @@
 package br.edu.ifpb.api;
 
 import br.edu.ifpb.api.presenter.EmprestimoPresenter;
-import br.edu.ifpb.domain.Emprestimo;
-import br.edu.ifpb.domain.Emprestimos;
-import br.edu.ifpb.domain.Livros;
+import br.edu.ifpb.domain.*;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -23,6 +21,8 @@ public class EmprestimosResources {
     private Emprestimos emprestimos;
     @Inject
     private Livros livros;
+    @Inject
+    private Usuarios usuarios;
     @POST
     public Response criar(){
         Emprestimo emprestimo = new Emprestimo();
@@ -69,16 +69,22 @@ public class EmprestimosResources {
         return resourceContext.getResource(SubResourcesDeLivros.class);
     }
     @PUT
-    @Path("{codigo}/cliente/{cpf}") // ../api/emprestimos/6017cf1b-ad15-457d/cliente/2
+    @Path("{codigo}/cliente/{key}") // ../api/emprestimos/6017cf1b-ad15-457d/cliente/2
     public Response incluirClienteEm(
             @PathParam("codigo") String codigo,
-            @PathParam("cpf") String cpf){
+            @PathParam("key") String key){
         Emprestimo emprestimo =  emprestimos.localizarPorCodigo(codigo);
+        Usuario usuario = usuarios.buscar(key);
         if(Emprestimo.vazio().equals(emprestimo)){
             return Response.notModified()
                     .build();
         }
-        emprestimo.setCpf(cpf);
+        if(usuario == null){
+            return Response.notModified()
+                    .build();
+        }
+        emprestimo.setKey(key);
+        usuario.adicionarEmprestimo(emprestimo);
         return Response.ok()
                 .entity(emprestimo)
                 .build();
@@ -104,6 +110,7 @@ public class EmprestimosResources {
             return Response.notModified()
                     .build();
         }
+
         emprestimo.finalizar();
         return Response.ok()
                 .entity(emprestimo)
