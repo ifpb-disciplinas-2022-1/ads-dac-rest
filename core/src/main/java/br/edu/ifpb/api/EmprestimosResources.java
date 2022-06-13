@@ -65,7 +65,6 @@ public class EmprestimosResources {
     @Path("{codigo}/livros") // ../api/emprestimos/6017cf1b-ad15-457d/livros/
     public SubResourcesDeLivros incluirLivroEm(
             @PathParam("codigo") String codigo){
-//        return new SubResourcesDeLivros(livros, emprestimos);
         return resourceContext.getResource(SubResourcesDeLivros.class);
     }
     @PUT

@@ -18,7 +18,7 @@ public class EmprestimoPresenter implements Serializable {
     private LocalDate criadoEm;
     private String status;
     private String cliente; //cpf
-    private List<Link> livros;
+    private List<Link> livros; //HATEOS
     //ações  possíveis para este recurso (semânticos)
     private Link finalizar;
     private UriInfo uriInfo;

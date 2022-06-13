@@ -25,11 +25,7 @@ public class SubResourcesDeLivros {
     private Emprestimos emprestimos;
 
     private Logger logger = Logger.getLogger(SubResourcesDeLivros.class.getName());
-//
-//    public SubResourcesDeLivros(Livros livros, Emprestimos emprestimos) {
-//        this.livros = livros;
-//        this.emprestimos = emprestimos;
-//    }
+
 
     @PUT
     @Path("{idLivro}") // ../api/emprestimos/6017cf1b-ad15-457d/livros/2
@@ -44,7 +40,6 @@ public class SubResourcesDeLivros {
                 .build();
     }
     @GET
-//    @Path("{codigo}/livros") // ../api/emprestimos/6017cf1b-ad15-457d/livros/
     public Response listarLivrosDoEmprestimo(
             @PathParam("codigo") String codigo){
         logger.log(Level.INFO, "Executando o método GET");
