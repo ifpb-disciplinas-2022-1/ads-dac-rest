@@ -34,7 +34,7 @@ public class LivrosEmJDBC implements Livros {
             );
             prepareStatement.setString(1,livro.titulo());
             prepareStatement.setDate(
-                2,Date.valueOf(livro.dataLancamento())
+                2, Date.valueOf(livro.dataLancamento())
             );
             prepareStatement.setString(3,livro.getCapa());
             prepareStatement.executeUpdate();

@@ -19,12 +19,12 @@
                           statement-timeout-in-seconds="-1" steady-pool-size="8"
                           validate-atmost-once-period-in-seconds="0"
                           wrap-jdbc-objects="false">
-<!--        <property name="serverName" value="localhost"/>-->
-<!--        <property name="portNumber" value="5433"/>-->
-<!--        <property name="URL" value="jdbc:postgresql://localhost:5433/livros"/>-->
-        <property name="serverName" value="host-banco"/>
-        <property name="portNumber" value="5432"/>
-        <property name="URL" value="jdbc:postgresql://host-banco:5432/livros"/>
+        <property name="serverName" value="localhost"/>
+        <property name="portNumber" value="5433"/>
+        <property name="URL" value="jdbc:postgresql://localhost:5433/livros"/>
+<!--        <property name="serverName" value="host-banco"/>-->
+<!--        <property name="portNumber" value="5432"/>-->
+<!--        <property name="URL" value="jdbc:postgresql://host-banco:5432/livros"/>-->
         <property name="databaseName" value="livros"/>
         <property name="User" value="job"/>
         <property name="Password" value="123"/>
