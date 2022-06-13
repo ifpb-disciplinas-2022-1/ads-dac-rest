@@ -11,4 +11,5 @@ public interface Usuarios {
 
     void adicionarEmprestimo(String key ,Emprestimo emprestimo);
 
+    boolean temEmprestimo(String key, String codigoEmprestimo);
 }

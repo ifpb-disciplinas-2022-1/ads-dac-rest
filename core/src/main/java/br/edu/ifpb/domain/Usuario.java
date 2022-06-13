@@ -32,6 +32,16 @@ public class Usuario {
         this.emprestimos.add(emprestimo);
     }
 
+    public Emprestimo buscarEmprestimo(String codigo){
+        for (Emprestimo emprestimo:emprestimos){
+            if(emprestimo.getCodigo().equals(codigo)){
+                return emprestimo;
+            }
+        }
+
+        return null;
+    }
+
     public String getNome() {
         return nome;
     }

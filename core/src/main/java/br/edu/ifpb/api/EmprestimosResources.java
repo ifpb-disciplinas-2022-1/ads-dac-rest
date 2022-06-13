@@ -103,17 +103,22 @@ public class EmprestimosResources {
                 .build();
     }
     @PUT
-    @Path("{codigo}/finalizar")
-    public Response finalizar(@PathParam("codigo") String codigo){
+    @Path("{codigo}/finalizar/cliente/{key}")
+    public Response finalizar(
+            @PathParam("codigo") String codigo,
+            @PathParam("key") String key){
         Emprestimo emprestimo =  emprestimos.localizarPorCodigo(codigo);
         if(Emprestimo.vazio().equals(emprestimo)){
             return Response.notModified()
                     .build();
         }
-
-        emprestimo.finalizar();
-        return Response.ok()
-                .entity(emprestimo)
+        if(usuarios.temEmprestimo(key,codigo)){
+            emprestimo.finalizar();
+            return Response.ok()
+                    .entity(emprestimo)
+                    .build();
+        }
+        return Response.notModified()
                 .build();
     }
 }

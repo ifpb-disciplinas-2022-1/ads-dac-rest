@@ -32,6 +32,16 @@ public class UsuariosEmMemoria implements Usuarios {
     }
 
     @Override
+    public boolean temEmprestimo(String key, String codigoEmprestimo) {
+        Usuario usuario = this.buscar(key);
+        if(usuario != null){
+            Emprestimo emprestimo = usuario.buscarEmprestimo(codigoEmprestimo);
+            return emprestimo != null;
+        }
+        return false;
+    }
+
+    @Override
     public Usuario buscar(String key) {
         for (Usuario usuario:usuarios){
             if(usuario.getKey().equals(key)){
